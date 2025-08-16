@@ -16,7 +16,7 @@ public class ChatMessage {
     private String content;
     private String timestamp;
 
-    // Constructors
+    
     public ChatMessage() {
     }
 
@@ -26,7 +26,7 @@ public class ChatMessage {
         this.timestamp = timestamp;
     }
 
-    // Getters and Setters
+   
     public Long getId() {
         return id;
     }
@@ -59,7 +59,7 @@ public class ChatMessage {
         this.timestamp = timestamp;
     }
 
-    // toString
+ 
     @Override
     public String toString() {
         return "ChatMessage{" +

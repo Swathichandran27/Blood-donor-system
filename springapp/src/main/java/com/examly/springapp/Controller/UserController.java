@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*")
+
 public class UserController {
 
     @Autowired
@@ -24,6 +24,20 @@ public class UserController {
 
     
 
+    @PostMapping("/login")
+public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
+    String email = loginData.get("email");
+    String password = loginData.get("password");
+    Optional<User> userOpt = userService.getUserByEmail(email);
+    if (userOpt.isPresent() && userOpt.get().getPassword().equals(password)) {
+        User user = userOpt.get();
+        // For security, do not return the password
+        user.setPassword(null);
+        return ResponseEntity.ok(user);
+    } else {
+        return ResponseEntity.status(401).body("Invalid email or password");
+    }
+}
     //register for donor
     @PostMapping("/register")
     public User registerUser(@RequestBody User user) {
@@ -35,6 +49,12 @@ public class UserController {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+   @GetMapping("/{id}")
+public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id) {
+    
+        Optional<User> user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
+}
 
     //login validation-(login check)
     @GetMapping("/email/{email}")
@@ -54,12 +74,7 @@ public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
         userService.deleteUser(id);
     }
 
-    //basic login check-no jwt as of now
-    @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password) {
-        boolean isValid = userService.login(email, password);
-        return isValid ? "Login Successful" : "Invalid Credentials";
-    }
+    
    //donors can edit their profile
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
@@ -92,19 +107,19 @@ public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
     return user.map(u -> ResponseEntity.ok("DONOR-" + u.getId()))
                .orElse(ResponseEntity.notFound().build());
 }
-//prescreening test for donors
-@PostMapping("/eligibility-check")
-public ResponseEntity<String> checkEligibility(@RequestBody EligibilityFormDTO form) {
-    String result = userService.assessEligibility(form);
-    return ResponseEntity.ok(result + " (This is a preliminary check. Final check at donation center.)");
-}
+    //prescreening test for donors
+    @PostMapping("/eligibility-check")
+    public ResponseEntity<String> checkEligibility(@RequestBody EligibilityFormDTO form) {
+        String result = userService.assessEligibility(form);
+        return ResponseEntity.ok(result + " (This is a preliminary check. Final check at donation center.)");
+    }
 
 
         @GetMapping("/leaderboard")
-public ResponseEntity<List<Map<String, Object>>> getLeaderboard(
+        public ResponseEntity<List<Map<String, Object>>> getLeaderboard(
         @RequestParam(defaultValue = "10") int topN) {
 
-    List<User> topUsers = userService.getTopDonors(topN);
+        List<User> topUsers = userService.getTopDonors(topN);
     
     // Format minimal info to return
     List<Map<String, Object>> response = new ArrayList<>();

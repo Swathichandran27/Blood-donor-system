@@ -1,0 +1,166 @@
+/* Sidebar Styling */
+.sidebar {
+  background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+  color: white;
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 25px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.blood-icon {
+  color: #d32f2f;
+  font-size: 1.3em;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.sidebar-menu li {
+  margin: 5px 15px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sidebar-link.active {
+  background: linear-gradient(90deg, rgba(211, 47, 47, 0.2) 0%, transparent 100%);
+  color: white;
+  border-left: 3px solid #d32f2f;
+}
+
+.sidebar-link.active .sidebar-icon {
+  color: #d32f2f;
+}
+
+.sidebar-icon {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-label {
+  font-size: 0.95rem;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #d32f2f;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.user-status {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 70px;
+    overflow: hidden;
+  }
+  
+  .sidebar-title span,
+  .sidebar-label,
+  .user-info {
+    display: none;
+  }
+  
+  .sidebar-link {
+    justify-content: center;
+    padding: 15px 0;
+  }
+  
+  .sidebar-icon {
+    margin-right: 0;
+    font-size: 1.3rem;
+  }
+}
+
+/* Animation for active state */
+.sidebar-link.active {
+  position: relative;
+}
+
+.sidebar-link.active::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: #d32f2f;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}

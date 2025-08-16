@@ -29,19 +29,19 @@ public class UrgentRequestController {
         urgentRequest.setFulfilled(false); // default to not fulfilled
         return urgentRequestRepo.save(urgentRequest);
     }
-    // Get all active urgent requests
+
     @GetMapping("/all")
     public List<UrgentRequest> getAllUrgentRequests() {
         return urgentRequestRepo.findByFulfilledFalse();
     }
 
-    // Filter by blood group and location
+   
     @GetMapping("/filter")
     public List<UrgentRequest> filterUrgentRequests(@RequestParam String bloodGroup, @RequestParam String location) {
         return urgentRequestRepo.findByBloodGroupAndLocationAndFulfilledFalse(bloodGroup, location);
     }
 
-    // Optional: Mark request as fulfilled
+   
     @PutMapping("/fulfill/{id}")
     public ResponseEntity<String> markAsFulfilled(@PathVariable Long id) {
         Optional<UrgentRequest> req = urgentRequestRepo.findById(id);

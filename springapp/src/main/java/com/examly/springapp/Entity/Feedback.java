@@ -13,7 +13,7 @@ public class Feedback {
     private String comment;
 
     private boolean reportedAdverseReaction;
-
+     
     private String adverseReactionDetails;
 
 

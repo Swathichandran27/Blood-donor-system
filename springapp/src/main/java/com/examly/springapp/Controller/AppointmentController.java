@@ -6,11 +6,9 @@ import com.examly.springapp.Repository.AppointmentRepository;
 import com.examly.springapp.Service.AppointmentService;
 import com.examly.springapp.Service.GamificationService;
 import com.examly.springapp.Service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -27,7 +25,7 @@ public class AppointmentController {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-    // Booking endpoint using AppointmentDTO as input
+
     @PostMapping("/book")
     public ResponseEntity<String> bookAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         try {

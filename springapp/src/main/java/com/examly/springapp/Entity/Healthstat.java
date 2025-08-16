@@ -8,7 +8,6 @@ public class Healthstat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private int pulse;
     private int systolicPressure;   
     private int diastolicPressure;  

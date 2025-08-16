@@ -16,11 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+   @Autowired
+   private AppointmentService appointmentService;
 
    @Autowired
     private AppointmentRepository appointmentRepository;
@@ -32,28 +36,21 @@ public class UserService {
         List<Appointment> completedAppointments = appointmentRepository
             .findByUserAndStatusIgnoreCase(user, "Completed");
 
-        System.out.println("Appointments: " + completedAppointments.size());
-        for (Appointment a : completedAppointments) {
-            System.out.println(a.getId() + " - " + a.getStatus());
-        }
 
         user.setTotalDonations(completedAppointments.size());
         userRepository.save(user);
     }
 
     public User registerUser(User user) {
-    // Save user first (referralCode will be generated after ID is created)
+
     User savedUser = userRepository.save(user);
 
-    // Generate unique referral code
     String generatedCode = "REF" + savedUser.getId();
     savedUser.setReferralCode(generatedCode);
-
-    // If referredBy is passed (i.e., used someone else's referral code)
     if (user.getReferredBy() != null && !user.getReferredBy().isEmpty()) {
         savedUser.setReferredBy(user.getReferredBy());
 
-        // Find the referring user by referral code
+
         User referringUser = userRepository.findByReferralCode(user.getReferredBy());
 
         if (referringUser != null) {
@@ -62,9 +59,8 @@ public class UserService {
         }
     }
 
-    return userRepository.save(savedUser); // Save again with referralCode & referredBy
+    return userRepository.save(savedUser); 
 }
-
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -77,6 +73,10 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+
+
+
 
     public boolean login(String email, String password) {
         Optional<User> user = userRepository.findByEmail(email);

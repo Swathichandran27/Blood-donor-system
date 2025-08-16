@@ -36,13 +36,13 @@ public class User {
      
     private String referredBy; 
 
-public String getReferredBy() {
-    return referredBy;
-}
+    public String getReferredBy() {
+        return referredBy;
+    }
 
-public void setReferredBy(String referredBy) {
-    this.referredBy = referredBy;
-}
+    public void setReferredBy(String referredBy) {
+        this.referredBy = referredBy;
+    }
 
     public String getReferralCode() {
         return referralCode;
@@ -74,6 +74,8 @@ public void setReferredBy(String referredBy) {
 
     private boolean eligible = true;
     private LocalDate lastDonationDate;
+
+    
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

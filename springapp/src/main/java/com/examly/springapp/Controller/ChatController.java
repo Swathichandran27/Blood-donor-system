@@ -9,8 +9,8 @@ import com.examly.springapp.Entity.ChatMessage;
 @Controller
 public class ChatController {
 
-    @MessageMapping("/chat.sendMessage")  // maps to /app/chat.sendMessage
-    @SendTo("/topic/public")              // broadcasts to /topic/public
+    @MessageMapping("/chat.sendMessage")  
+    @SendTo("/topic/public")              
     public ChatMessage sendMessage(ChatMessage chatMessage) {
         return chatMessage;
     }

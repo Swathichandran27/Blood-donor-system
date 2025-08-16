@@ -2,13 +2,16 @@ package com.examly.springapp.Entity;
 
 
 
-import java.util.List;
+import java.util.*;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKeyColumn;
 
 @Entity
 public class DonationCenter {
@@ -26,9 +29,24 @@ public class DonationCenter {
 
     private Double latitude;
     private Double longitude;
+    
 
     @ElementCollection
     private List<String> acceptedBloodGroups; 
+
+    @ElementCollection
+    @CollectionTable(name = "blood_stock")
+    @MapKeyColumn(name = "blood_group")
+    @Column(name = "stock")
+    private Map<String, Integer> bloodGroupStock = new HashMap<>();
+
+    public Map<String, Integer> getBloodGroupStock() {
+        return bloodGroupStock;
+    }
+
+    public void setBloodGroupStock(Map<String, Integer> bloodGroupStock) {
+        this.bloodGroupStock = bloodGroupStock;
+    }
 
     public Long getId() {
         return id;

@@ -1,0 +1,86 @@
+/* Container adjustments */
+.donor-dashboard {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Card styles */
+.card {
+  border-radius: 1rem !important;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Card Titles */
+.card-title {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Table styling */
+.table {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.table thead {
+  background-color: #f1f3f5;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/* Badges for blood stock status */
+.badge {
+  font-size: 0.85rem;
+  padding: 0.5em 0.75em;
+  border-radius: 0.5rem;
+}
+
+/* Urgent Requests list */
+.list-group-item {
+  border: none;
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item h6 {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+/* Campaign Cards */
+.bg-light {
+  border: 1px solid #f1f3f5;
+}
+
+/* Countdown highlight */
+.fw-bold.text-primary {
+  font-size: 1.1rem;
+}
+
+/* Health stats box */
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}

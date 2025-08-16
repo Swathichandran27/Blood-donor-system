@@ -35,8 +35,7 @@ public class UserDTO {
         this.lastDonationDate = lastDonationDate;
     }
 
-    // Getters and Setters
-
+   
     public Long getId() {
         return id;
     }

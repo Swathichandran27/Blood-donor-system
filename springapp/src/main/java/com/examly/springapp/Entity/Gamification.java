@@ -11,11 +11,11 @@ public class Gamification {
 
     private int totalPoints;
 
-    private String badge; // e.g., Bronze, Silver, Gold, Platinum
+    private String badge;
 
-    private String level; // e.g., Beginner, Intermediate, Hero
+    private String level; 
 
-    private String certificate; // Optional: URL or message
+    private String certificate; 
 
     public Long getId() {
         return id;

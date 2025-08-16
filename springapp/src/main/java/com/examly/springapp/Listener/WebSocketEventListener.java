@@ -13,12 +13,12 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
-        logger.info("🔌 New WebSocket connection established.");
+        logger.info(" New WebSocket connection established.");
     }
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        logger.info("🔌 User disconnected: " + headerAccessor.getSessionId());
+        logger.info(" User disconnected: " + headerAccessor.getSessionId());
     }
 }

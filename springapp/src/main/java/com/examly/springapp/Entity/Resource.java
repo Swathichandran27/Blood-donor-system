@@ -15,12 +15,12 @@ public class Resource {
 
     private String title;
 
-    @Column(length = 5000) // Optional: in case content is large
+    @Column(length = 5000) 
     private String content;
 
-    private String type; // article, video, faq, process, eligibility, etc.
+    private String type; 
 
-    // Constructors
+    
     public Resource() {}
 
     public Resource(String title, String content, String type) {
@@ -29,7 +29,7 @@ public class Resource {
         this.type = type;
     }
 
-    // Getters and Setters
+    
     public Long getId() {
         return id;
     }

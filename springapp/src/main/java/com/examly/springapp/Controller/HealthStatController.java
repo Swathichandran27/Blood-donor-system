@@ -19,7 +19,7 @@ public class HealthStatController {
     @Autowired
     private AppointmentRepository appointmentRepo;
 
-    // Create or update health stats for an appointment
+    
     @PostMapping("/{appointmentId}")
     public Healthstat addHealthStat(@PathVariable Long appointmentId, @RequestBody Healthstat stat) {
         Appointment appt = appointmentRepo.findById(appointmentId).orElse(null);
@@ -31,7 +31,7 @@ public class HealthStatController {
         return healthStatRepo.save(stat);
     }
 
-    // Get health stats for an appointment
+   
     @GetMapping("/{appointmentId}")
     public Healthstat getHealthStat(@PathVariable Long appointmentId) {
         return healthStatRepo.findByAppointmentId(appointmentId);

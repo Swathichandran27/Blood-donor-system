@@ -20,13 +20,13 @@ public class ResourceController {
     @Autowired
     private ResourceRepository resourceRepository;
 
-    // ✅ Get all resources
+   
     @GetMapping
     public List<Resource> getAllResources() {
         return resourceRepository.findAll();
     }
 
-    // ✅ (Optional) Add new educational resource (for admin)
+    
     @PostMapping("/add")
     public Resource addResource(@RequestBody Resource resource) {
         return resourceRepository.save(resource);
